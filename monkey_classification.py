@@ -111,7 +111,7 @@ trainer = Trainer(model, loss="categorical_crossentropy", optimizer=RMSprop())
 trainer.train(
     training_generator,
     batch_size=128,
-    epochs=50,
+    epochs=200,
     validation_data=validation_generator
 )
 
