@@ -43,8 +43,8 @@ class MonkeyDataset():
 
     def extract_files(self):
         subprocess.run("unzip -o dataset/10-monkey-species.zip".split())
-        subprocess.run("unzip -o training.zip".split())
-        subprocess.run("unzip -o validation.zip".split())
+        subprocess.run("unzip -o -q training.zip".split())
+        subprocess.run("unzip -o -q validation.zip".split())
         os.remove("monkey_labels.txt")
         os.remove("training.zip")
         os.remove("validation.zip")
