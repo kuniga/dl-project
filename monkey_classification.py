@@ -116,6 +116,6 @@ trainer.train(
 )
 
 # show result
-score = model.evaluate_generator(validation_generator, verbose=0)
+score = model.evaluate_generator(validation_generator)
 print("Test loss:", score[0])
 print("Test accuracy:", score[1])
