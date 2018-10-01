@@ -38,7 +38,7 @@ def network(input_shape, num_classes):
 
 class MonkeyDataset():
     def __init__(self):
-        self.image_shape = (256, 256, 3)
+        self.image_shape = (128, 128, 3)
         self.num_classes = 10
 
     def extract_files(self):
@@ -63,7 +63,7 @@ class MonkeyDataset():
             horizontal_flip=True,  # randomly flip images
             vertical_flip=False)  # randomly flip images
 
-        return datagen.flow_from_directory(directory)
+        return datagen.flow_from_directory(directory, target_size=self.image_shape[:2])
 
 
 class Trainer():
