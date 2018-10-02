@@ -79,16 +79,16 @@ class Trainer():
         self.log_dir = logdir
         self.model_file_name = "model_file.hdf5"
 
-    def train(self, train, batch_size, epochs, validation_data):
+    def train(self, training_data, epochs, validation_data):
         if os.path.exists(self.log_dir):
             shutil.rmtree(self.log_dir)  # remove previous execution
         os.mkdir(self.log_dir)
 
         model_path = os.path.join(self.log_dir, self.model_file_name)
         self._target.fit_generator(
-            generator=training_generator,
+            generator=training_data,
             epochs=epochs,
-            validation_data=validation_generator,
+            validation_data=validation_data,
             callbacks=[
                 TensorBoard(log_dir=self.log_dir),
                 ModelCheckpoint(model_path, save_best_only=True)
@@ -110,7 +110,6 @@ validation_generator = dataset.generator('validation')
 trainer = Trainer(model, loss="categorical_crossentropy", optimizer=RMSprop())
 trainer.train(
     training_generator,
-    batch_size=128,
     epochs=200,
     validation_data=validation_generator
 )
