@@ -8,7 +8,7 @@ from keras.layers.core import Activation
 from keras.layers.core import Flatten, Dropout
 from keras.layers.core import Dense
 from keras.optimizers import RMSprop
-from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping
+from keras.callbacks import TensorBoard, ModelCheckpoint
 from keras.preprocessing.image import ImageDataGenerator
 
 
@@ -91,8 +91,7 @@ class Trainer():
             validation_data=validation_generator,
             callbacks=[
                 TensorBoard(log_dir=self.log_dir),
-                ModelCheckpoint(model_path, save_best_only=True),
-                EarlyStopping(),
+                ModelCheckpoint(model_path, save_best_only=True)
             ],
             verbose=self.verbose,
             workers=4
