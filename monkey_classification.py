@@ -114,12 +114,6 @@ trainer.train(
     validation_data=validation_generator
 )
 
-# save model
-os.makedirs("out", exist_ok=True)
-with open("out/monkey_classification.json", "w") as f:
-    f.write(model.to_json())
-model.save_weights("out/monkey_classification.hdf5")
-
 # show result
 score = model.evaluate_generator(validation_generator)
 print("Test loss:", score[0])
