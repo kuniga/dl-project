@@ -4,7 +4,7 @@ import subprocess
 from keras.models import Model
 from keras.layers import GlobalAveragePooling2D
 from keras.layers.core import Dense
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, SGD
 from keras.callbacks import TensorBoard, ModelCheckpoint
 from keras.applications import InceptionV3
 from keras.preprocessing.image import ImageDataGenerator
@@ -106,7 +106,23 @@ trainer = Trainer(
 
 trainer.train(
     training_generator,
-    epochs=20,
+    epochs=8,
+    validation_data=validation_generator)
+
+for layer in model.layers[:249]:
+    layer.trainable = False
+
+for layer in model.layers[249:]:
+    layer.trainable = True
+
+trainer = Trainer(
+    model,
+    loss="categorical_crossentropy",
+    optimizer=SGD(lr=0.001, momentum=0.9))
+
+trainer.train(
+    training_generator,
+    epochs=8,
     validation_data=validation_generator)
 
 # show result
