@@ -65,7 +65,9 @@ class MonkeyDataset():
             horizontal_flip=True,  # randomly flip images
             vertical_flip=False)  # randomly flip images
 
-        return datagen.flow_from_directory(directory, target_size=self.image_shape[:2])
+        return datagen.flow_from_directory(
+            directory,
+            target_size=self.image_shape[:2])
 
 
 class Trainer():
