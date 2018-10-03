@@ -29,6 +29,8 @@ class MonkeyDataset():
         self.num_classes = 10
 
     def extract_files(self):
+        if os.path.isdir("training") and os.path.isdir("validation"):
+            return
         subprocess.run("unzip -o dataset/10-monkey-species.zip".split())
         subprocess.run("unzip -o -q training.zip".split())
         subprocess.run("unzip -o -q validation.zip".split())
