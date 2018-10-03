@@ -98,12 +98,16 @@ model = network(dataset.num_classes)
 dataset.extract_files()
 training_generator = dataset.generator('training')
 validation_generator = dataset.generator('validation')
-trainer = Trainer(model, loss="categorical_crossentropy", optimizer=RMSprop())
+
+trainer = Trainer(
+    model,
+    loss="categorical_crossentropy",
+    optimizer=RMSprop())
+
 trainer.train(
     training_generator,
     epochs=20,
-    validation_data=validation_generator
-)
+    validation_data=validation_generator)
 
 # show result
 score = model.evaluate_generator(validation_generator)
