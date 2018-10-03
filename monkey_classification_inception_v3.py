@@ -27,8 +27,6 @@ class MonkeyDataset():
     def __init__(self):
         self.image_shape = (128, 128, 3)
         self.num_classes = 10
-        self.training_data_size = 1097
-        self.validation_data_size = 272
 
     def extract_files(self):
         if os.path.isdir("training") and os.path.isdir("validation"):
@@ -80,10 +78,8 @@ class Trainer():
         model_path = os.path.join(self.log_dir, self.model_file_name)
         self._target.fit_generator(
             generator=training_data,
-            steps_per_epoch=35,    # ceil(<training data size> // 32)
             epochs=epochs,
             validation_data=validation_data,
-            validation_steps=272,  # validation data size
             callbacks=[
                 TensorBoard(log_dir=self.log_dir),
                 ModelCheckpoint(model_path, save_best_only=True)
