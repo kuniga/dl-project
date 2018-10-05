@@ -105,3 +105,10 @@ venv.bak/
 
 # OS X
 .DS_Store
+
+# additional setting
+dataset
+out
+tmp
+training
+validation
