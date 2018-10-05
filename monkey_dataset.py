@@ -1,6 +1,7 @@
 import os
 import subprocess
 from keras.preprocessing.image import ImageDataGenerator
+from crop_to_square import crop_all
 
 
 class MonkeyDataset():
@@ -8,6 +9,7 @@ class MonkeyDataset():
         self.image_shape = (128, 128, 3)
         self.num_classes = 10
         self._extract_files()
+        self._preprocess()
 
     def _extract_files(self):
         if os.path.isdir("training") and os.path.isdir("validation"):
@@ -18,6 +20,10 @@ class MonkeyDataset():
         os.remove("monkey_labels.txt")
         os.remove("training.zip")
         os.remove("validation.zip")
+
+    def _preprocess(self):
+        crop_all('training')
+        crop_all("validation")
 
     def generator(self, directory):
         datagen = ImageDataGenerator(
