@@ -73,7 +73,6 @@ dataset = MonkeyDataset()
 model = network(dataset.image_shape, dataset.num_classes)
 
 # train the model
-dataset.extract_files()
 training_generator = dataset.generator('training')
 validation_generator = dataset.generator('validation')
 

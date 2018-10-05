@@ -7,8 +7,9 @@ class MonkeyDataset():
     def __init__(self):
         self.image_shape = (128, 128, 3)
         self.num_classes = 10
+        self._extract_files()
 
-    def extract_files(self):
+    def _extract_files(self):
         if os.path.isdir("training") and os.path.isdir("validation"):
             return
         subprocess.run("unzip -o dataset/10-monkey-species.zip".split())
