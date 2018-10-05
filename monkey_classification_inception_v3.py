@@ -40,10 +40,10 @@ trainer.train(
     epochs=8,
     validation_data=validation_generator)
 
-for layer in model.layers[:229]:
+for layer in model.layers[:249]:
     layer.trainable = False
 
-for layer in model.layers[229:]:
+for layer in model.layers[249:]:
     layer.trainable = True
 
 trainer = Trainer(
