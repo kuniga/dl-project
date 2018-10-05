@@ -54,7 +54,7 @@ trainer = Trainer(
 
 trainer.train(
     training_generator,
-    epochs=8,
+    epochs=20,
     validation_data=validation_generator)
 
 # show result
