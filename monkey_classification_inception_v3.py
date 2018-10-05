@@ -23,7 +23,7 @@ def network(num_classes):
 
 
 class Trainer():
-    def __init__(self, model, loss, optimizer):
+    def __init__(self, model, loss, optimizer, log_dir):
         self._target = model
         self._target.compile(
             loss=loss,
@@ -31,8 +31,7 @@ class Trainer():
             metrics=["accuracy"]
         )
         self.verbose = 1
-        logdir = "logdir_monkey_pretrain_inceptionv3_with_aug"
-        self.log_dir = logdir
+        self.log_dir = log_dir
         self.model_file_name = "model_file.hdf5"
 
     def train(self, training_data, epochs, validation_data):
@@ -66,7 +65,8 @@ validation_generator = dataset.generator('validation')
 trainer = Trainer(
     model,
     loss="categorical_crossentropy",
-    optimizer=RMSprop())
+    optimizer=RMSprop(),
+    log_dir="logdir_monkey_pretrain_inceptionv3_with_aug")
 
 trainer.train(
     training_generator,
@@ -82,7 +82,8 @@ for layer in model.layers[249:]:
 trainer = Trainer(
     model,
     loss="categorical_crossentropy",
-    optimizer=SGD(lr=0.001, momentum=0.9))
+    optimizer=SGD(lr=0.001, momentum=0.9),
+    log_dir="logdir_monkey_pretrain_inceptionv3_with_aug")
 
 trainer.train(
     training_generator,
