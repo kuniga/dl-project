@@ -1,3 +1,4 @@
+import os
 from keras.models import Model
 from keras.layers import GlobalAveragePooling2D
 from keras.layers.core import Dense
@@ -5,6 +6,8 @@ from keras.optimizers import RMSprop, SGD
 from keras.applications import InceptionV3
 from monkey_dataset import MonkeyDataset
 from trainer import Trainer
+
+TPU_WORKER = 'grpc://' + os.environ['COLAB_TPU_ADDR']
 
 
 def network(num_classes):
